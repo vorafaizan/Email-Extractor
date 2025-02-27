@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Email Extractor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .custom-card {
+            width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+        }
+
+        .custom-btn {
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .custom-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.09);
+        }
+
+        .custom-btn:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .blur {
+            filter: blur(4px);
+            pointer-events: none;
+        }
+    </style>
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('form-container').classList.add('blur');
+            document.querySelector('button[type=submit]').disabled = true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="card p-4 custom-card" id="form-container">
+            <h4 class="text-center mb-4">Email Extractor</h4>
+            <form method="POST" onsubmit="showLoading();">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" class="form-control form-control-sm" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" class="form-control form-control-sm" id="password" name="password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="post_url" class="form-label">Post URL:</label>
+                    <input type="text" class="form-control form-control-sm" id="post_url" name="post_url" required>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-sm custom-btn">Extract Emails</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="loading">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p>Extracting emails, please wait...</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!-- Extracted Emails Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extracted Emails</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Extracted Emails</h2>
+        <div class="card p-4 shadow-sm">
+            {% if emails %}
+                <ul class="list-group">
+                    {% for email in emails %}
+                        <li class="list-group-item">{{ email }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-center text-muted">No emails found.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
